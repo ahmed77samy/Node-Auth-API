@@ -25,7 +25,7 @@ class RegisterController
             req.body.userID = user[0].insertId
             
             // Inject Observer 
-            // RegisterObserver.registered(req.body)
+            RegisterObserver.registered(req.body)
 
             return res.status(200).json({
                 success : true,
