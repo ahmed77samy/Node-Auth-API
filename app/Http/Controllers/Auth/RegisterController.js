@@ -20,10 +20,15 @@ class RegisterController
             if (req.files)
             req.body.img = `uploads/users/avatar/${saveFile('users/avatar', req.files.img)}`
 
+            // Generate Verification Code
+            let verify_code = Math.floor(Math.random() * 999999) + 100000;
+
+            req.body.verify_code = verify_code
+
             let user = await AuthServiceProvider.register(req.body);
 
             req.body.userID = user[0].insertId
-            
+
             // Inject Observer 
             RegisterObserver.registered(req.body)
 

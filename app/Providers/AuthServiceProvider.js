@@ -35,13 +35,10 @@ class AuthServiceProvider
      */
     static async register (data)
     {
-        let {name, email, password, img} = data
+        let {name, email, password, img, verify_code} = data
 
         // Insert default img if img dosen't exist
         img = (!img) ? 'uploads/users/avatar/default.png' : img
-
-        // Generate Verification Code
-        let verify_code = Math.floor(Math.random() * 999999) + 100000;
 
         // Hash Password
         password = await bcrypt.hash(password, 10)
