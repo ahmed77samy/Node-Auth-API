@@ -4,11 +4,12 @@ module.exports = {
 
     isExistEmail (email) 
     {
-        return User
-        .getByEmail(email)
-        .then( response => {
-            if (response[0][0]) return Promise
-                .reject('E-mail already in use');
-        })
+        if (email)
+            return User
+            .getByEmail(email)
+            .then( response => {
+                if (response[0][0]) return Promise
+                    .reject('E-mail already in use');
+            })
     }
 }

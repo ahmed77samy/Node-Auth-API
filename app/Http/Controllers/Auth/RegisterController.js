@@ -23,10 +23,12 @@ class RegisterController
             // Generate Verification Code
             let verify_code = Math.floor(Math.random() * 999999) + 100000;
 
+            // Add verify_code to request 
             req.body.verify_code = verify_code
 
             let user = await AuthServiceProvider.register(req.body);
 
+            // Add user_id to request 
             req.body.userID = user[0].insertId
 
             // Inject Observer 
